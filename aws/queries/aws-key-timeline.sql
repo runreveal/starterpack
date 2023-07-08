@@ -7,7 +7,7 @@ select
   eventTime
 from cloudtrail_logs
 where
-  eventTime >= subtractHours(now('UTC'), toInt32(@hour))
+  eventTime >= subtractHours(now('UTC'), toInt32(@since))
   AND
   userIdentity.accessKeyId=@key
 order by eventTime desc;
