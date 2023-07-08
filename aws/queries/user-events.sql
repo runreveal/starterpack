@@ -1,4 +1,4 @@
--- User '--param email=<email> --param hour=<hour>' to run the query with parameters
+-- Use '--param email=<email> --param hour=<hour>' to run the query with parameters
 
 SELECT eventName, COUNT(*) cnt FROM runreveal_logs
 WHERE actor['email'] = @email
