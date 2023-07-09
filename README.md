@@ -87,6 +87,19 @@ runreveal logs --name higher-avg-trigger-usage
 This will show you triggers that are firing at a higher than average rate. Critical for detecting changes in your environment.
 
 
-
-1. 
 # Triggers
+## AWS
+The aws triggers are based off of this [invictus IR cheat sheet.](https://invictus-ir.medium.com/aws-cloudtrail-cheat-sheet-dcf2b92e37e2). Each trigger is written to match the event names in the cheat sheet, across each of categories of compromise related activity 
+ - [Initial Activity](https://github.com/runreveal/starterpack/blob/main/aws/triggers/initial-access.py)
+ - [Evasion](https://github.com/runreveal/starterpack/blob/main/aws/triggers/evasion.py)
+ - [Discovery](https://github.com/runreveal/starterpack/blob/main/aws/triggers/discovery.py)
+ - [Execution](https://github.com/runreveal/starterpack/blob/main/aws/triggers/execution.py)
+ - [Exflitration](https://github.com/runreveal/starterpack/blob/main/aws/triggers/exfil.py)
+ - [Impact](https://github.com/runreveal/starterpack/blob/main/aws/triggers/impact.py)
+ - [Credential Access](https://github.com/runreveal/starterpack/blob/main/aws/triggers/secrets.py)
+ - [Privilege Escalation](https://github.com/runreveal/starterpack/blob/main/aws/triggers/priv-escalation.py)
+ - [Persistence](https://github.com/runreveal/starterpack/blob/main/aws/triggers/persistence.py)
+ - [Lateral Movement](https://github.com/runreveal/starterpack/blob/main/aws/triggers/lateral-movement.py)
+
+
+  
