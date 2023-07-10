@@ -10,6 +10,6 @@ NULLIF(userIdentity.type, ''), '') identity,
     arrayCompact(groupArray(srcASCountryCode)) srcASCountryCode
 FROM cloudtrail_logs
     where eventType = 'AwsConsoleSignIn' and eventName = 'ConsoleLogin' AND eventTime
-between subtractMinutes(now('UTC'), 10) and now('UTC')
+between subtractMinutes(now('UTC'), 3600) and now('UTC')
 AND JSONExtractString(responseElements, 'ConsoleLogin') = 'Failure'
 GROUP BY identity HAVING failedAttempts >= 3
