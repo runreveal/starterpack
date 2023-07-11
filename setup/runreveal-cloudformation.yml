@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Outputs:
+  TrailName:
+    Description: RunReveal Trail
+    Value: !Ref RunRevealTrail
+Resources:
+  CloudtrailBucket:
+    Type: AWS::S3::Bucket
+    Properties: 
+      NotificationConfiguration:
+        TopicConfigurations:
+          - Event: s3:ObjectCreated:Put
+            Topic:
+              Fn::Sub:
+                - arn:aws:sns:${Region}:253602268883:RunReveal
+                - Region: !Ref "AWS::Region"
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref CloudtrailBucket
+      PolicyDocument:
+        Statement:
+          - Sid: AllowRunRevealToWriteLogs
+            Effect: Allow
+            Principal:
+              AWS: "arn:aws:iam::253602268883:root"
+            Action:
+              - 's3:GetObject'
+              - 's3:ListBucket'
+            Resource:
+              - !Sub "arn:aws:s3:::${CloudtrailBucket}/*"
+              - !Sub "arn:aws:s3:::${CloudtrailBucket}"
+          - Sid: AllowCloudtrailToWriteLogs
+            Effect: Allow
+            Principal:
+              Service: cloudtrail.amazonaws.com
+            Action:
+              - 's3:PutObject'
+              - 's3:GetBucketAcl'
+            Resource:
+              - !Sub "arn:aws:s3:::${CloudtrailBucket}"
+              - !Sub "arn:aws:s3:::${CloudtrailBucket}/*"
+  RunRevealKey:
+    Type: AWS::KMS::Key
+    Properties: 
+      Description: KMS Key
+      KeyPolicy:
+        Version: '2012-10-17'
+        Id: key-default-1
+        Statement:
+        - Sid: Enable RunReveal Permissions
+          Effect: Allow
+          Principal:
+            AWS: "arn:aws:iam::253602268883:root"
+          Action: kms:*
+          Resource: '*'
+        - Sid: Enable RunReveal Permissions
+          Effect: Allow
+          Principal:
+            Service: cloudtrail.amazonaws.com
+          Action: kms:*
+          Resource: '*'
+        - Sid: Ownership of this account
+          Effect: Allow
+          Principal:
+            AWS: !Sub "arn:aws:iam::${AWS::AccountId}:root"
+          Action:
+            - kms:*
+          Resource: "*"
+ 
+  RunRevealTrail:
+    Type: AWS::CloudTrail::Trail
+    Properties:
+      S3BucketName: !Ref CloudtrailBucket
+      KMSKeyId: !GetAtt RunRevealKey.Arn
+      IncludeGlobalServiceEvents: true
+      IsLogging: true
+      IsOrganizationTrail: true
+      IsMultiRegionTrail: false
+ 
+ 
+ 
