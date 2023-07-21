@@ -18,7 +18,7 @@ Usage:
 ```
 runreveal logs --name access-key-usage
 ```
-The `access-key-usage` query will provide an overview of the past 5 minute usage of access keys, and by which IAM users.
+The `access-key-usage` query will provide an overview of the past 15 minute usage of access keys, and by which IAM users.
 
 This query will show which users are making which API calls, and how many of them. A sudden increase in the quantity of access, or a sudden change in eventNames might indicate a compromised account or misuse of an AWS key.
 
@@ -40,6 +40,38 @@ runreveal logs --name failed-login-attempts
 ```
 
 Quickly see a list of failed logins, and from which IP, AS number, and country that the attempt originated from. This is useful in quickly identifying attempted unauthorized access to your AWS account.
+
+#### Global security group ingress rule
+Usage:
+````
+runreveal logs --name global-security-group
+````
+
+This query will show you security groups that were updated in the past 15 minutes with a CIDR ingress rule of 0.0.0.0/0.
+
+#### New access key creation
+Usage:
+````
+runreveal logs --name new-access-key-usage
+````
+
+This query will show you if any new access keys were created for a user in the past 15 minutes.
+
+#### Policy changes
+Usage:
+````
+runreveal logs --name policy-changes
+````
+
+Quickly see if any aws service has had a policy change in the last 15 minutes.
+
+#### Root account usage
+Usage:
+````
+runreveal logs --name root-account-usage
+````
+
+See a list of events that your aws root account has been performing.
 
 #### Secret access
 Usage:

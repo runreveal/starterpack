@@ -1,0 +1,36 @@
+[
+  {
+    "query": "root-account-usage",
+    "description": "AWS events accessed by root account",
+    "schedule": "*/15 * * * *",
+    "enabled": true,
+    "notificationNames": ["email"]
+  },
+  {
+    "query": "unknown-aws-access",
+    "description": "Unknown/New AWS access",
+    "schedule": "*/15 * * * *",
+    "enabled": true
+  },
+  {
+    "query": "new-access-key-usage",
+    "description": "New AWS access key usage",
+    "schedule": "*/15 * * * *",
+    "enabled": true,
+    "notificationNames": ["email"]
+  },
+  {
+    "query": "policy-changes",
+    "description": "AWS Policy change",
+    "schedule": "*/15 * * * *",
+    "enabled": true,
+    "notificationNames": ["email"]
+  },
+  {
+    "query": "global-security-group",
+    "description": "Global ingress allowed to resource",
+    "schedule": "*/15 * * * *",
+    "enabled": true,
+    "notificationNames": ["email"]
+  }
+]
