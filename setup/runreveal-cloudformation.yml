@@ -77,7 +77,7 @@ Resources:
       IncludeGlobalServiceEvents: true
       IsLogging: true
       IsOrganizationTrail: true
-      IsMultiRegionTrail: false
+      IsMultiRegionTrail: true
  
  
  
