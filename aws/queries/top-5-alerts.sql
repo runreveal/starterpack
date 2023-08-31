@@ -16,7 +16,7 @@ SELECT * FROM cloudtrail_logs WHERE
     'DisableSecurityHub',
     'DeactivateMFADevice',
     'DeleteVirtualMFADevice')) OR
-  (eventName in 
+  (eventName in
     ('AuthorizeSecurityGroupIngress',
      'PutKeyPolicy',
      'PutBucketPolicy',
