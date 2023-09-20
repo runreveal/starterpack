@@ -1,6 +1,6 @@
 SELECT *
 FROM okta_logs
-WHERE 
+WHERE
 (eventType IN (
     'user.account.update_password',
     'user.account.unlock_by_admin',
