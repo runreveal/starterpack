@@ -2,8 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'CloudFormation Stack to create an IAM role with access to S3 and KMS for the RunReveal AWS account.'
 
 Resources:
-
-  CrossAccountAccessRole:
+  RunRevealRole:
     Type: 'AWS::IAM::Role'
     Properties:
       RoleName: 'RunRevealRole'
@@ -12,7 +11,7 @@ Resources:
         Statement:
           - Effect: Allow
             Principal:
-              AWS: 'arn:aws:iam::253602268883:root'
+              AWS: 'arn:aws:iam::253602268883:role/ReadSQSFromEC2'
             Action:
               - 'sts:AssumeRole'
       Policies:
@@ -32,5 +31,5 @@ Resources:
 Outputs:
   RoleARN:
     Description: 'The ARN of the role that grants S3 and KMS access to the AWS account 253602268883.'
-    Value: !GetAtt CrossAccountAccessRole.Arn
+    Value: !GetAtt RunRevealRole.Arn
 
